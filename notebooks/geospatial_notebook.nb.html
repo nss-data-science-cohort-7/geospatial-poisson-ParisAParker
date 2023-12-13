@@ -1760,8 +1760,62 @@ the chunk or by placing your cursor inside it and pressing
 <em>Ctrl+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzZilcbmBgYCJ9 -->
+<pre class="r"><code>library(sf)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlua2luZyB0byBHRU9TIDMuMTEuMiwgR0RBTCAzLjcuMiwgUFJPSiA5LjMuMDsgc2ZfdXNlX3MyKCkgaXMgVFJVRVxuIn0= -->
+<pre><code>Linking to GEOS 3.11.2, GDAL 3.7.2, PROJ 9.3.0; sf_use_s2() is TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Reading in files</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnVyZ2xhcmllcyA8LSByZWFkX2NzdihcIi4uL2RhdGEvYnVyZ2xhcmllc18yMDIzLmNzdlwiKVxuYGBgIn0= -->
+<pre class="r"><code>burglaries &lt;- read_csv(&quot;../data/burglaries_2023.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTIwNCBDb2x1bW5zOiAyOeKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgKDE3KTogcHJpbWFyeV9rZXksIHJlcG9ydF90eXBlLCByZXBvcnRfdHlwZV9kZXNjcmlwdGlvbiwgaW5jaWRlbnRfc3RhdHVzX2NvZGUsIGluY2lkZW50X3N0YXR1c19kZXNjcmlwdGkuLi5cbmRibCAgICg4KTogaW5jaWRlbnRfbnVtYmVyLCBsYXRpdHVkZSwgbG9uZ2l0dWRlLCB6aXBfY29kZSwgbG9jYXRpb25fY29kZSwgb2ZmZW5zZV9udW1iZXIsIG9mZmVuc2VfbmlicnMsIHZpY3QuLi5cbmxnbCAgICgyKTogZG9tZXN0aWNfcmVsYXRlZCwgbWFwcGVkX2xvY2F0aW9uXG5kdHRtICAoMik6IGluY2lkZW50X29jY3VycmVkLCBpbmNpZGVudF9yZXBvcnRlZFxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>Rows: 1204 Columns: 29── Column specification ─────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (17): primary_key, report_type, report_type_description, incident_status_code, incident_status_descripti...
+dbl   (8): incident_number, latitude, longitude, zip_code, location_code, offense_number, offense_nibrs, vict...
+lgl   (2): domestic_related, mapped_location
+dttm  (2): incident_occurred, incident_reported
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2Vuc3VzIDwtIHJlYWRfY3N2KFwiLi4vZGF0YS9jZW5zdXMuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>census &lt;- read_csv(&quot;../data/census.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTc0IENvbHVtbnM6IDbilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgKDMpOiBOQU1FLCBjb3VudHksIHRyYWN0XG5kYmwgKDMpOiBzdGF0ZSwgcG9wdWxhdGlvbiwgbWVkaWFuX2luY29tZVxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>Rows: 174 Columns: 6── Column specification ─────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (3): NAME, county, tract
+dbl (3): state, population, median_income
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGMgPC0gcmVhZF9zZihcIi4uL2RhdGEvREMvREMuc2hwXCIpXG5gYGAifQ== -->
+<pre class="r"><code>dc &lt;- read_sf(&quot;../data/DC/DC.shp&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5idXJnbGFyaWVzX2dlbyA8LSBzdF9hc19zZihidXJnbGFyaWVzIHw+IGRyb3BfbmEobGF0aXR1ZGUpLFxuY29vcmRzID0gYygnbG9uZ2l0dWRlJywnbGF0aXR1ZGUnKSxcbmNycyA9IHN0X2NycyhkYykpXG5gYGAifQ== -->
+<pre class="r"><code>
+burglaries_geo &lt;- st_as_sf(burglaries |&gt; drop_na(latitude),
+coords = c(&#39;longitude&#39;,&#39;latitude&#39;),
+crs = st_crs(dc))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Perform a spatial join</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnVyZ2xhcmllc19qb2luIDwtIHN0X2pvaW4oYnVyZ2xhcmllc19nZW8sIGRjLCBqb2luID0gc3Rfd2l0aGluKVxuYGBgIn0= -->
+<pre class="r"><code>burglaries_join &lt;- st_join(burglaries_geo, dc, join = st_within)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1776,7 +1830,7 @@ run any R code chunks. Instead, the output of the chunk when it was last
 run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3J9DQpwbG90KGNhcnMpDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg0KVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KDQpgYGB7cn0NCmxpYnJhcnkoc2YpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmBgYA0KUmVhZGluZyBpbiBmaWxlcw0KYGBge3J9DQpidXJnbGFyaWVzIDwtIHJlYWRfY3N2KCIuLi9kYXRhL2J1cmdsYXJpZXNfMjAyMy5jc3YiKQ0KY2Vuc3VzIDwtIHJlYWRfY3N2KCIuLi9kYXRhL2NlbnN1cy5jc3YiKQ0KZGMgPC0gcmVhZF9zZigiLi4vZGF0YS9EQy9EQy5zaHAiKQ0KYGBgDQpgYGB7cn0NCg0KYnVyZ2xhcmllc19nZW8gPC0gc3RfYXNfc2YoYnVyZ2xhcmllcyB8PiBkcm9wX25hKGxhdGl0dWRlKSwNCmNvb3JkcyA9IGMoJ2xvbmdpdHVkZScsJ2xhdGl0dWRlJyksDQpjcnMgPSBzdF9jcnMoZGMpKQ0KYGBgDQpQZXJmb3JtIGEgc3BhdGlhbCBqb2luDQpgYGB7cn0NCmJ1cmdsYXJpZXNfam9pbiA8LSBzdF9qb2luKGJ1cmdsYXJpZXNfZ2VvLCBkYywgam9pbiA9IHN0X3dpdGhpbikNCmBgYA0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouDQoNCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ3RybCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLg0KDQpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuDQo=</div>
 
 
 

@@ -7,8 +7,26 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
+
 ```{r}
-plot(cars)
+library(sf)
+library(tidyverse)
+```
+Reading in files
+```{r}
+burglaries <- read_csv("../data/burglaries_2023.csv")
+census <- read_csv("../data/census.csv")
+dc <- read_sf("../data/DC/DC.shp")
+```
+```{r}
+
+burglaries_geo <- st_as_sf(burglaries |> drop_na(latitude),
+coords = c('longitude','latitude'),
+crs = st_crs(dc))
+```
+Perform a spatial join
+```{r}
+burglaries_join <- st_join(burglaries_geo, dc, join = st_within)
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.

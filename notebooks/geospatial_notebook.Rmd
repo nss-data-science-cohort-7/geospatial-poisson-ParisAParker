@@ -29,6 +29,67 @@ Perform a spatial join
 burglaries_join <- st_join(burglaries_geo, dc, join = st_within)
 ```
 
+Looking at dataframe
+```{r}
+head(burglaries_join)
+```
+
+```{r}
+census |>
+  ggplot() +
+  geom_sf(data = burglaries_join, size = 01)
+```
+
+Removing an outlier from the data
+```{r}
+burglaries <- burglaries |>
+  filter(latitude > 36)
+```
+
+```{r}
+
+burglaries_geo <- st_as_sf(burglaries |> drop_na(latitude),
+coords = c('longitude','latitude'),
+crs = st_crs(dc))
+```
+
+```{r}
+burglaries_join <- st_join(burglaries_geo, dc, join = st_within)
+```
+
+```{r}
+census |>
+  ggplot() +
+  geom_sf(data = burglaries_join, size = 01)
+```
+#Data looks much better
+
+```{r}
+burglaries_final <- left_join(burglaries_join, census, join_by(TRACTCE == tract))
+```
+
+```{r}
+head(burglaries_final, 10)
+```
+Which census had the most burglaries?
+```{r}
+burglaries_final |> 
+  
+  group_by(TRACTCE) |> 
+  count() |>
+  arrange(desc(n))
+
+```
+Which census had the most unique incidents?
+```{r}
+burglaries_final |>
+  group_by(TRACTCE) |>
+  distinct(incident_number) |>
+  count() |>
+  arrange(desc(n))
+```
+
+
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).

@@ -39,6 +39,10 @@ census |>
   ggplot() +
   geom_sf(data = burglaries_join, size = 01)
 ```
+```{r}
+burglaries_final |>
+  nrow()
+```
 
 Removing an outlier from the data
 ```{r}
@@ -63,17 +67,26 @@ census |>
   geom_sf(data = burglaries_join, size = 01)
 ```
 #Data looks much better
-
 ```{r}
 burglaries_final <- left_join(burglaries_join, census, join_by(TRACTCE == tract))
 ```
+
+```{r}
+burglaries_distinct <- burglaries_final |> 
+  distinct(incident_number, .keep_all = TRUE) |> 
+  select(TRACTCE, population, median_income) |> 
+  drop_na(TRACTCE) |> 
+  group_by(TRACTCE)
+```
+
+
 
 ```{r}
 head(burglaries_final, 10)
 ```
 Which census had the most burglaries?
 ```{r}
-burglaries_final |> 
+burglaries_distinct |> 
   
   group_by(TRACTCE) |> 
   count() |>
@@ -82,13 +95,21 @@ burglaries_final |>
 ```
 Which census had the most unique incidents?
 ```{r}
-burglaries_final |>
+burglaries_distinct |>
   group_by(TRACTCE) |>
   distinct(incident_number) |>
   count() |>
   arrange(desc(n))
 ```
 
+```{r}
+burglaries_distinct |>
+  summarise(Mean = mean('MEDIAN INCOME'), Median = "MEDIAN INCOME")
+```
+
+```{r}
+burglaries_distinct
+```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 

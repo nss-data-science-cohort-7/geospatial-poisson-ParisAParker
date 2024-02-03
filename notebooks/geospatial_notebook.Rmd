@@ -108,7 +108,8 @@ burglaries_distinct |>
 ```
 
 ```{r}
-burglaries_distinct
+burglaries_distinct |>
+  filter(year = 1000)
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
